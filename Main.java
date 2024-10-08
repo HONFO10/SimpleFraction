@@ -2,31 +2,29 @@ public class Main {
     public static void main(String[] args) {
         // Tests des constructeurs
         Fraction f1 = new Fraction(1, 2);
-        Fraction f2 = new Fraction(3);
-        Fraction f3 = new Fraction();
+        Fraction f2 = new Fraction(1, 3);
+        Fraction f3 = new Fraction(2, 3);
+        Fraction f4 = new Fraction(3, 6); // équivalent à 1/2
 
-        // Tests des constantes
-        Fraction zero = Fraction.ZERO;
-        Fraction un = Fraction.UN;
+        // Assertions pour tester l'addition
+        Fraction sum = f1.add(f2);
+        assert sum.toString().equals("5/6") : "Erreur sur l'addition";
 
-        // Assertions pour tester les constructeurs et constantes
-        assert f1.toString().equals("1/2") : "Erreur sur f1";
-        assert f2.toString().equals("3/1") : "Erreur sur f2";
-        assert f3.toString().equals("0/1") : "Erreur sur f3";
-        assert zero.toString().equals("0/1") : "Erreur sur ZERO";
-        assert un.toString().equals("1/1") : "Erreur sur UN";
+        // Assertions pour tester l'égalité
+        assert f1.equals(f4) : "Erreur sur l'égalité"; // f1 et f4 doivent être égales
+        assert !f1.equals(f3) : "Erreur sur l'égalité"; // f1 et f3 ne doivent pas être égales
 
-        // Tests des getters
-        assert f1.getNumerateur() == 1 : "Erreur sur le numérateur de f1";
-        assert f1.getDenominateur() == 2 : "Erreur sur le dénominateur de f1";
+        // Assertions pour tester la comparaison
+        assert f1.compareTo(f3) < 0 : "Erreur sur la comparaison"; // f1 < f3
+        assert f1.compareTo(f2) > 0 : "Erreur sur la comparaison"; // f1 > f2
+        assert f1.compareTo(f4) == 0 : "Erreur sur la comparaison"; // f1 == f4
 
-        // Tests de la conversion en double
-        assert f1.doubleValue() == 0.5 : "Erreur sur doubleValue() de f1";
-        assert f2.doubleValue() == 3.0 : "Erreur sur doubleValue() de f2";
+        // Vérifier avec java.math.BigDecimal
+        Number aNumber = java.math.BigDecimal.ONE;
+        Number anotherNumber = new Fraction(1, 2);
+        assert java.lang.Math.abs(aNumber.doubleValue() + anotherNumber.doubleValue() - 1.5) < 1e-10 : "Erreur sur la somme avec BigDecimal";
 
         // Affichage des résultats
         System.out.println("Tous les tests sont réussis !");
     }
 }
-
-
