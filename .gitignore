@@ -1,0 +1,28 @@
+# Ignorer les fichiers issus de la compilation Java
+*.class
+*.jar
+*.war
+*.ear
+
+# Ignorer les dossiers de compilation
+/bin/
+/build/
+/target/
+/out/
+
+# Ignorer les fichiers de logs
+*.log
+
+# Ignorer les fichiers de configuration d'IDE (Eclipse, IntelliJ, NetBeans)
+# Eclipse
+.project
+.classpath
+/.settings/
+/.idea/
+/*.iml
+# NetBeans
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
